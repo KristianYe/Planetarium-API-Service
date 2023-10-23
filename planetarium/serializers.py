@@ -25,13 +25,13 @@ class AstronomyShowSerializer(serializers.ModelSerializer):
 
 
 class AstronomyShowListSerializer(AstronomyShowSerializer):
-    show_theme = serializers.SlugRelatedField(
+    show_themes = serializers.SlugRelatedField(
         many=True, read_only=True, slug_field="name"
     )
 
 
 class AstronomyShowDetailSerializer(AstronomyShowSerializer):
-    show_theme = ShowThemeSerializer(many=True, read_only=True)
+    show_themes = ShowThemeSerializer(many=True, read_only=True)
 
 
 class PlanetariumDomeSerializer(serializers.ModelSerializer):
