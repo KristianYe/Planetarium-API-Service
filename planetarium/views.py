@@ -1,8 +1,10 @@
 from datetime import datetime
 
 from django.db.models import F, Count
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.viewsets import GenericViewSet
 
 from planetarium.models import (
     ShowTheme,
@@ -11,6 +13,7 @@ from planetarium.models import (
     ShowSession,
     Reservation,
 )
+from planetarium.permissions import IsAdminOrIfAuthenticatedReadOnly
 from planetarium.serializers import (
     ShowThemeSerializer,
     AstronomyShowSerializer,
@@ -39,6 +42,7 @@ class ShowThemeViewSet(viewsets.ModelViewSet):
     queryset = ShowTheme.objects.all()
     serializer_class = ShowThemeSerializer
     pagination_class = PageTenPagination
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly, )
 
     def get_queryset(self):
         queryset = self.queryset
@@ -55,6 +59,7 @@ class AstronomyShowViewSet(viewsets.ModelViewSet):
     queryset = AstronomyShow.objects.all()
     serializer_class = AstronomyShowSerializer
     pagination_class = PageFivePagination
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly, )
 
     def get_queryset(self):
         queryset = self.queryset.prefetch_related("show_theme")
@@ -86,6 +91,7 @@ class PlanetariumDomeViewSet(viewsets.ModelViewSet):
     queryset = PlanetariumDome.objects.all()
     serializer_class = PlanetariumDomeSerializer
     pagination_class = PageTenPagination
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly, )
 
     def get_queryset(self):
         queryset = self.queryset
@@ -102,6 +108,8 @@ class ShowSessionViewSet(viewsets.ModelViewSet):
     queryset = ShowSession.objects.all()
     serializer_class = ShowSessionSerializer
     pagination_class = PageFivePagination
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly, )
+
 
     def get_serializer_class(self):
         if self.action == "list":
@@ -139,10 +147,16 @@ class ShowSessionViewSet(viewsets.ModelViewSet):
         return queryset.distinct()
 
 
-class ReservationViewSet(viewsets.ModelViewSet):
+class ReservationViewSet(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    GenericViewSet,
+):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
     pagination_class = PageFivePagination
+    permission_classes = (IsAuthenticated, )
+
 
     def get_queryset(self):
         queryset = self.queryset.prefetch_related(
