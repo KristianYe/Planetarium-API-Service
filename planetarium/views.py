@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db.models import F, Count
 from rest_framework import viewsets
 from rest_framework.pagination import PageNumberPagination
@@ -23,35 +25,57 @@ from planetarium.serializers import (
 )
 
 
-class FivePagesPagination(PageNumberPagination):
+class PageFivePagination(PageNumberPagination):
     page_size = 5
     page_size_query_param = "page_size"
     max_page_size = 50
 
 
-class TenPagesPagination(FivePagesPagination):
+class PageTenPagination(PageFivePagination):
     page_size = 10
 
 
 class ShowThemeViewSet(viewsets.ModelViewSet):
     queryset = ShowTheme.objects.all()
     serializer_class = ShowThemeSerializer
-    pagination_class = TenPagesPagination
+    pagination_class = PageTenPagination
+
+    def get_queryset(self):
+        queryset = self.queryset
+
+        name = self.request.query_params.get("name")
+
+        if name:
+            queryset = queryset.filter(name__icontains=name)
+
+        return queryset
 
 
 class AstronomyShowViewSet(viewsets.ModelViewSet):
     queryset = AstronomyShow.objects.all()
     serializer_class = AstronomyShowSerializer
-    pagination_class = FivePagesPagination
+    pagination_class = PageFivePagination
 
     def get_queryset(self):
         queryset = self.queryset.prefetch_related("show_theme")
 
-        return queryset
+        title = self.request.query_params.get("title")
+        show_theme_name = self.request.query_params.get("show_theme_name")
+
+        if title:
+            queryset = queryset.filter(title__icontains=title)
+
+        if show_theme_name:
+            queryset = queryset.filter(
+                show_theme__name__icontains=show_theme_name
+            )
+
+        return queryset.distinct()
 
     def get_serializer_class(self):
         if self.action == "list":
             return AstronomyShowListSerializer
+
         if self.action == "retrieve":
             return AstronomyShowDetailSerializer
 
@@ -61,13 +85,23 @@ class AstronomyShowViewSet(viewsets.ModelViewSet):
 class PlanetariumDomeViewSet(viewsets.ModelViewSet):
     queryset = PlanetariumDome.objects.all()
     serializer_class = PlanetariumDomeSerializer
-    pagination_class = TenPagesPagination
+    pagination_class = PageTenPagination
+
+    def get_queryset(self):
+        queryset = self.queryset
+
+        name = self.request.query_params.get("name")
+
+        if name:
+            queryset = queryset.filter(name__icontains=name)
+
+        return queryset
 
 
 class ShowSessionViewSet(viewsets.ModelViewSet):
     queryset = ShowSession.objects.all()
     serializer_class = ShowSessionSerializer
-    pagination_class = FivePagesPagination
+    pagination_class = PageFivePagination
 
     def get_serializer_class(self):
         if self.action == "list":
@@ -92,13 +126,23 @@ class ShowSessionViewSet(viewsets.ModelViewSet):
                 )
             )
 
+        date = self.request.query_params.get("date")
+        show_title = self.request.query_params.get("show_title")
+
+        if date:
+            date = datetime.strptime(date, "%Y-%m-%d").date()
+            queryset = queryset.filter(show_time__date=date)
+
+        if show_title:
+            queryset = queryset.filter(astronomy_show__title__icontains=show_title)
+
         return queryset.distinct()
 
 
 class ReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
-    pagination_class = FivePagesPagination
+    pagination_class = PageFivePagination
 
     def get_queryset(self):
         queryset = self.queryset.prefetch_related(
