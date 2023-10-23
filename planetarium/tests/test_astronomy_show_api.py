@@ -5,8 +5,16 @@ from django.urls import reverse
 from rest_framework.test import APIClient
 from rest_framework import status
 
-from planetarium.models import AstronomyShow, ShowTheme, PlanetariumDome, ShowSession
-from planetarium.serializers import AstronomyShowListSerializer, AstronomyShowDetailSerializer
+from planetarium.models import (
+    AstronomyShow,
+    ShowTheme,
+    PlanetariumDome,
+    ShowSession,
+)
+from planetarium.serializers import (
+    AstronomyShowListSerializer,
+    AstronomyShowDetailSerializer,
+)
 
 ASTRONOMY_SHOW_URL = reverse("planetarium:astronomyshow-list")
 
@@ -31,11 +39,7 @@ def sample_show_theme(**params):
 
 
 def sample_planetarium_dome(**params):
-    defaults = {
-        "name": "sample dome",
-        "rows": 10,
-        "seats_in_row": 15
-    }
+    defaults = {"name": "sample dome", "rows": 10, "seats_in_row": 15}
     defaults.update(params)
 
     return PlanetariumDome.objects.create(**defaults)
@@ -75,10 +79,14 @@ class AuthenticatedAstronomyViewSetTests(TestCase):
         self.client.force_authenticate(self.user)
         self.astronomy_show = sample_astronomy_show()
         self.test_astronomy_show = sample_astronomy_show(title="test")
-        self.one_more_astronomy_show = sample_astronomy_show(title="one_more_test")
+        self.one_more_astronomy_show = sample_astronomy_show(
+            title="one_more_test"
+        )
         self.show_theme = sample_show_theme()
         self.planetarium_dome = sample_planetarium_dome()
-        self.show_session = sample_show_session(astronomy_show=self.astronomy_show)
+        self.show_session = sample_show_session(
+            astronomy_show=self.astronomy_show
+        )
 
     def test_list_shows(self):
         res = self.client.get(ASTRONOMY_SHOW_URL)
@@ -92,7 +100,9 @@ class AuthenticatedAstronomyViewSetTests(TestCase):
     def test_filter_shows_by_title(self):
         res = self.client.get(ASTRONOMY_SHOW_URL, {"title": "test"})
 
-        shows_with_test_titles = AstronomyShow.objects.filter(title__icontains="test")
+        shows_with_test_titles = AstronomyShow.objects.filter(
+            title__icontains="test"
+        )
 
         serializer_title = AstronomyShowListSerializer(
             shows_with_test_titles, many=True
@@ -104,7 +114,9 @@ class AuthenticatedAstronomyViewSetTests(TestCase):
     def test_filter_show_by_themes(self):
         self.test_astronomy_show.show_themes.add(self.show_theme)
 
-        res = self.client.get(ASTRONOMY_SHOW_URL, {"show_themes": str(self.show_theme.id)})
+        res = self.client.get(
+            ASTRONOMY_SHOW_URL, {"show_themes": str(self.show_theme.id)}
+        )
 
         test_serializer = AstronomyShowListSerializer(self.test_astronomy_show)
         one_more_test_serializer = AstronomyShowListSerializer(

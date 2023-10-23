@@ -1,0 +1,829 @@
+[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2023-10-21T16:57:17.488Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "1",
+    "object_repr": "test",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2023-10-21T16:57:20.017Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "1",
+    "object_repr": "test_show",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2023-10-21T16:57:30.658Z",
+    "user": 1,
+    "content_type": 6,
+    "object_id": "2",
+    "object_repr": "one_more_test_show",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2023-10-21T17:24:05.611Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Solar System",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2023-10-21T17:40:57.581Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "test_show (2023-10-21 17:40:56+00:00)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 1,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 2,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 2,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 2,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 2,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 3,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 3,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 3,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 3,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 4,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 4,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 4,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 4,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 5,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 5,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 5,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 5,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add astronomy show",
+    "content_type": 6,
+    "codename": "add_astronomyshow"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change astronomy show",
+    "content_type": 6,
+    "codename": "change_astronomyshow"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete astronomy show",
+    "content_type": 6,
+    "codename": "delete_astronomyshow"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view astronomy show",
+    "content_type": 6,
+    "codename": "view_astronomyshow"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add planetarium dome",
+    "content_type": 7,
+    "codename": "add_planetariumdome"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change planetarium dome",
+    "content_type": 7,
+    "codename": "change_planetariumdome"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete planetarium dome",
+    "content_type": 7,
+    "codename": "delete_planetariumdome"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view planetarium dome",
+    "content_type": 7,
+    "codename": "view_planetariumdome"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add reservation",
+    "content_type": 8,
+    "codename": "add_reservation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change reservation",
+    "content_type": 8,
+    "codename": "change_reservation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete reservation",
+    "content_type": 8,
+    "codename": "delete_reservation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view reservation",
+    "content_type": 8,
+    "codename": "view_reservation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add show session",
+    "content_type": 9,
+    "codename": "add_showsession"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change show session",
+    "content_type": 9,
+    "codename": "change_showsession"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete show session",
+    "content_type": 9,
+    "codename": "delete_showsession"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view show session",
+    "content_type": 9,
+    "codename": "view_showsession"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add show theme",
+    "content_type": 10,
+    "codename": "add_showtheme"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change show theme",
+    "content_type": 10,
+    "codename": "change_showtheme"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete show theme",
+    "content_type": 10,
+    "codename": "delete_showtheme"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view show theme",
+    "content_type": 10,
+    "codename": "view_showtheme"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add ticket",
+    "content_type": 11,
+    "codename": "add_ticket"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change ticket",
+    "content_type": 11,
+    "codename": "change_ticket"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete ticket",
+    "content_type": 11,
+    "codename": "delete_ticket"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view ticket",
+    "content_type": 11,
+    "codename": "view_ticket"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 12,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 12,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 12,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 12,
+    "codename": "view_user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "planetarium",
+    "model": "astronomyshow"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "planetarium",
+    "model": "planetariumdome"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "planetarium",
+    "model": "reservation"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "planetarium",
+    "model": "showsession"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "planetarium",
+    "model": "showtheme"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "planetarium",
+    "model": "ticket"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "user",
+    "model": "user"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "bls1os2embkmu8ofvdxpnzkihj4sedqj",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGll2_Fso6XMGa7324gBypDipEHeHSCmgfTPzXiLitta49bLEKYuL0OL0uyWkR2k7yHdst1nS3NZlSnJX5EG7HOdcntfD_Tuo2Ou3VtZZFawxyZA3YD1ALgNzIgx-OBflWAM7Z6BAtp4xo3fEPlnDgUCL9wfGnze6:1quFGy:SCu3j4zi1g8s7vm5PdV39yoz9S8esYDp9BGS7QuD0H4",
+    "expire_date": "2023-11-04T16:56:24.272Z"
+  }
+},
+{
+  "model": "planetarium.showtheme",
+  "pk": 1,
+  "fields": {
+    "name": "Space Exploration"
+  }
+},
+{
+  "model": "planetarium.showtheme",
+  "pk": 2,
+  "fields": {
+    "name": "Astronomy Basics"
+  }
+},
+{
+  "model": "planetarium.showtheme",
+  "pk": 3,
+  "fields": {
+    "name": "Black Holes"
+  }
+},
+{
+  "model": "planetarium.astronomyshow",
+  "pk": 1,
+  "fields": {
+    "title": "Journey to the Stars",
+    "description": "Explore the wonders of our universe.",
+    "show_themes": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "planetarium.astronomyshow",
+  "pk": 2,
+  "fields": {
+    "title": "Secrets of the Cosmos",
+    "description": "Unlock the mysteries of the cosmos.",
+    "show_themes": [
+      1
+    ]
+  }
+},
+{
+  "model": "planetarium.astronomyshow",
+  "pk": 3,
+  "fields": {
+    "title": "Black Holes: The Unknown Frontier",
+    "description": "Dive into the enigmatic world of black holes.",
+    "show_themes": [
+      3
+    ]
+  }
+},
+{
+  "model": "planetarium.astronomyshow",
+  "pk": 4,
+  "fields": {
+    "title": "test",
+    "description": "test",
+    "show_themes": []
+  }
+},
+{
+  "model": "planetarium.planetariumdome",
+  "pk": 1,
+  "fields": {
+    "name": "Starry Sky Dome",
+    "rows": 10,
+    "seats_in_row": 15
+  }
+},
+{
+  "model": "planetarium.planetariumdome",
+  "pk": 2,
+  "fields": {
+    "name": "Cosmic Odyssey Dome",
+    "rows": 13,
+    "seats_in_row": 20
+  }
+},
+{
+  "model": "planetarium.planetariumdome",
+  "pk": 3,
+  "fields": {
+    "name": "Celestial Wonders Dome",
+    "rows": 8,
+    "seats_in_row": 18
+  }
+},
+{
+  "model": "planetarium.planetariumdome",
+  "pk": 4,
+  "fields": {
+    "name": "test dome",
+    "rows": 12,
+    "seats_in_row": 14
+  }
+},
+{
+  "model": "planetarium.showsession",
+  "pk": 1,
+  "fields": {
+    "astronomy_show": 1,
+    "planetarium_dome": 1,
+    "show_time": "2023-10-21T17:40:56Z"
+  }
+},
+{
+  "model": "planetarium.showsession",
+  "pk": 2,
+  "fields": {
+    "astronomy_show": 1,
+    "planetarium_dome": 1,
+    "show_time": "2023-10-22T19:04:00Z"
+  }
+},
+{
+  "model": "planetarium.showsession",
+  "pk": 3,
+  "fields": {
+    "astronomy_show": 1,
+    "planetarium_dome": 1,
+    "show_time": "2023-10-15T19:30:00Z"
+  }
+},
+{
+  "model": "planetarium.showsession",
+  "pk": 4,
+  "fields": {
+    "astronomy_show": 2,
+    "planetarium_dome": 2,
+    "show_time": "2023-10-16T20:00:00Z"
+  }
+},
+{
+  "model": "planetarium.showsession",
+  "pk": 5,
+  "fields": {
+    "astronomy_show": 3,
+    "planetarium_dome": 3,
+    "show_time": "2023-10-17T18:45:00Z"
+  }
+},
+{
+  "model": "planetarium.showsession",
+  "pk": 6,
+  "fields": {
+    "astronomy_show": 3,
+    "planetarium_dome": 2,
+    "show_time": "2023-10-23T18:06:00Z"
+  }
+},
+{
+  "model": "planetarium.reservation",
+  "pk": 1,
+  "fields": {
+    "created_at": "2023-10-22T18:13:07.130Z",
+    "user": 2
+  }
+},
+{
+  "model": "planetarium.ticket",
+  "pk": 1,
+  "fields": {
+    "row": 10,
+    "seat": 2,
+    "show_session": 1,
+    "reservation": 1
+  }
+},
+{
+  "model": "planetarium.ticket",
+  "pk": 2,
+  "fields": {
+    "row": 1,
+    "seat": 2,
+    "show_session": 1,
+    "reservation": 1
+  }
+},
+{
+  "model": "planetarium.ticket",
+  "pk": 3,
+  "fields": {
+    "row": 1,
+    "seat": 3,
+    "show_session": 1,
+    "reservation": 1
+  }
+},
+{
+  "model": "user.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$lXOZ8wclcpUAOnuPhPpCMj$edOWpZ/828DoicI6Sz3+5eiTfTpn44un8SEAZ3NH2Sk=",
+    "last_login": "2023-10-21T16:56:24.146Z",
+    "is_superuser": true,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-10-21T16:56:16.855Z",
+    "email": "admin@admin.com",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$TdgW7HJnUZTdEdOty3ThfI$5gXvD1AY5PzCOlVHwxEFid3LfBojNamfTeCBv/ByRzI=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-22T17:57:17.615Z",
+    "email": "user@gmail.com",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
