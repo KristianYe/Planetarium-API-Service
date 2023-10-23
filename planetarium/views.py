@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.db.models import F, Count
+from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework import viewsets, mixins
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
@@ -42,7 +43,7 @@ class ShowThemeViewSet(viewsets.ModelViewSet):
     queryset = ShowTheme.objects.all()
     serializer_class = ShowThemeSerializer
     pagination_class = PageTenPagination
-    permission_classes = (IsAdminOrIfAuthenticatedReadOnly, )
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
 
     def get_queryset(self):
         queryset = self.queryset
@@ -54,26 +55,43 @@ class ShowThemeViewSet(viewsets.ModelViewSet):
 
         return queryset
 
+    @extend_schema(
+        parameters=[
+            OpenApiParameter(
+                "name",
+                type=str,
+                description="Filter by name (ex. ?name=black)",
+                required=False,
+            ),
+        ]
+    )
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
 
 class AstronomyShowViewSet(viewsets.ModelViewSet):
     queryset = AstronomyShow.objects.all()
     serializer_class = AstronomyShowSerializer
     pagination_class = PageFivePagination
-    permission_classes = (IsAdminOrIfAuthenticatedReadOnly, )
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
+
+    @staticmethod
+    def _params_to_ints(qs):
+        """Converts a list of string IDs to a list of integers"""
+        return [int(str_id) for str_id in qs.split(",")]
 
     def get_queryset(self):
-        queryset = self.queryset.prefetch_related("show_theme")
+        queryset = self.queryset.prefetch_related("show_themes")
 
         title = self.request.query_params.get("title")
-        show_theme_name = self.request.query_params.get("show_theme_name")
+        show_themes = self.request.query_params.get("show_themes")
 
         if title:
             queryset = queryset.filter(title__icontains=title)
 
-        if show_theme_name:
-            queryset = queryset.filter(
-                show_theme__name__icontains=show_theme_name
-            )
+        if show_themes:
+            show_themes_ids = self._params_to_ints(show_themes)
+            queryset = queryset.filter(show_theme__id__in=show_themes_ids)
 
         return queryset.distinct()
 
@@ -86,12 +104,30 @@ class AstronomyShowViewSet(viewsets.ModelViewSet):
 
         return self.serializer_class
 
+    @extend_schema(
+        parameters=[
+            OpenApiParameter(
+                "title",
+                type=str,
+                description="Filter by title (ex. ?title=journey)",
+                required=False,
+            ),
+            OpenApiParameter(
+                "show_themes",
+                type={"type": "list", "items": {"type": "number"}},
+                description="Filter by show theme id (ex. ?show_themes=1,2)",
+            ),
+        ]
+    )
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
 
 class PlanetariumDomeViewSet(viewsets.ModelViewSet):
     queryset = PlanetariumDome.objects.all()
     serializer_class = PlanetariumDomeSerializer
     pagination_class = PageTenPagination
-    permission_classes = (IsAdminOrIfAuthenticatedReadOnly, )
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
 
     def get_queryset(self):
         queryset = self.queryset
@@ -103,13 +139,25 @@ class PlanetariumDomeViewSet(viewsets.ModelViewSet):
 
         return queryset
 
+    @extend_schema(
+        parameters=[
+            OpenApiParameter(
+                "name",
+                type=str,
+                description="Filter by name (ex. ?name=Cosmic)",
+                required=False,
+            ),
+        ]
+    )
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
 
 class ShowSessionViewSet(viewsets.ModelViewSet):
     queryset = ShowSession.objects.all()
     serializer_class = ShowSessionSerializer
     pagination_class = PageFivePagination
-    permission_classes = (IsAdminOrIfAuthenticatedReadOnly, )
-
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
 
     def get_serializer_class(self):
         if self.action == "list":
@@ -135,16 +183,36 @@ class ShowSessionViewSet(viewsets.ModelViewSet):
             )
 
         date = self.request.query_params.get("date")
-        show_title = self.request.query_params.get("show_title")
+        show_title = self.request.query_params.get("show")
 
         if date:
             date = datetime.strptime(date, "%Y-%m-%d").date()
             queryset = queryset.filter(show_time__date=date)
 
         if show_title:
-            queryset = queryset.filter(astronomy_show__title__icontains=show_title)
+            queryset = queryset.filter(
+                astronomy_show__title__icontains=show_title
+            )
 
         return queryset.distinct()
+
+    @extend_schema(
+        parameters=[
+            OpenApiParameter(
+                "date",
+                type=datetime,
+                description="Filter by date (ex. ?date=2023-10-21)",
+                required=False,
+            ),
+            OpenApiParameter(
+                "show",
+                type={"type": "number"},
+                description="Filter by show title (ex. ?show=Black)",
+            ),
+        ]
+    )
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
 
 
 class ReservationViewSet(
@@ -155,8 +223,7 @@ class ReservationViewSet(
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
     pagination_class = PageFivePagination
-    permission_classes = (IsAuthenticated, )
-
+    permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         queryset = self.queryset.prefetch_related(
